@@ -1,4 +1,6 @@
-const burger = document.querySelector('.burger');
-burger.addEventListener('click', () => {
-    burger.classList.toggle('active')
+$(".burger").on("click", function () {
+    $(".fas, nav").toggleClass("off");
 })
+
+
+
