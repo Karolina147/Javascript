@@ -1,3 +1,16 @@
+<!-- 
+1. stworzyć plik index.html i strukturę dokumentu
+2. stworzyć przycisk w html
+3. ostylować przycisk i kwadraty, które będę tworzone
+JAVASCRIPT
+1. pobrać przycisk i podpiąć do niego nasłuchiwanie na click
+2. zadeklarować funkcję
+3. w funkcji stworzyć element html (div)
+4. dodać div do strony
+5. stworzyć licznik i uzupełnić zawartość elementu div o wartość licznika
+6. za pomocą instrukcji warunkowej stwierdzić czy dany element jest 5, jeśli tak nadać mu inną klasę 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,39 +18,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Galeria</title>
-    <link href="dist-lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
+    <style>
+        button {
+            display: block;
+            margin: 10px auto;
+        }
+        
+        div {
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            margin: 5px;
+            float: left;  /* divy będą tworzone jedej obok drugiego - float */
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border: 2px solid black;
+        }
+
+        .circle {
+            background-color: white;
+            border-radius: 50%;
+            color: black;
+            border: 2px solid black;
+        }
+    </style>
+
 </head>
 
 <body>
-    <section class="gallery">
-        <div class="title">
-            <h1>Moje ulubione</h1>
-            <h1>portale internetowe</h1>
-        </div>
-        <div class="images">
-            <a data-lightbox="www" href="img/1.jpg" data-title="Strona numer 1"><img src="img/thumb1.jpg"
-                    alt="miniatura"></a>
-            <a href="img/2.jpg" data-lightbox="www"><img src="img/thumb2.jpg" alt="miniatura"></a>
-            <a href="img/3.jpg" data-lightbox="www"><img src="img/thumb3.jpg" alt="miniatura"></a>
-            <a href="img/4.jpg" data-lightbox="www"><img src="img/thumb4.jpg" alt="miniatura"></a>
-            <a href="img/5.jpg" data-lightbox="www"><img src="img/thumb5.jpg" alt="miniatura"></a>
-            <a href="img/6.jpg" data-lightbox="www"><img src="img/thumb6.jpg" alt="miniatura"></a>
-            <a href="img/7.jpg" data-lightbox="www"><img src="img/thumb7.jpg" alt="miniatura"></a>
-            <a href="img/8.jpg" data-lightbox="www"><img src="img/thumb8.jpg" alt="miniatura"></a>
-        </div>
-        <script src="src/jquery-3.2.1.min.js"></script>
-        <script src="dist-lightbox/js/lightbox.js"></script>
-        <script>
-            lightbox.option({
-                albumLabel: 'Zdjęcie %1 of %2',
-                'resizeDuration': 200,
-                'wrapAround': true
-            })
-        </script>
 
+    <button>Utwórz element</button>
 
+    <script>
+        const btn = document.querySelector("button"); // przycisk pobieramy i przypisujemy do zmiennej, querySelector nowsza metoda - pobeira pierwszy element wybrany (teraz button)
+        let number = 1; // let zadeklarowany poza funkcją - żeby się nie kasował
+        let activeNumber = 1;
+
+        const addElement = function () { // deklaracja stałej funkcji - przypisana niżej do zdarzenia
+            
+            const div = document.createElement('div');
+            div.textContent = number;
+
+            // dodawanie klasy poprzez modulo
+            // if (number % 5 == 0) {
+            //     div.classList.add("circle");
+            // }
+
+            if (activeNumber == 5) {
+                activeNumber = 0;
+                div.classList.add("circle");
+            }
+
+            document.body.appendChild(div);  //dodaj dzieci do body - zawsze będą dodane na końcu listy
+            number++; // inkrementacja
+            activeNumber++;
+            console.log(number);
+            }
+
+        btn.addEventListener("click", addElement);
+
+    </script>
+    <!-- script w js musi być dodany na końcu body - bo DOM jest już wczytany -->
+    
 </body>
-
 </html>
