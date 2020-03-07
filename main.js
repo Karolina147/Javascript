@@ -1,20 +1,20 @@
-const names = [];
-const div = document.querySelector('div');
+const spnText = document.querySelector('.text');
+const spnCursor = document.querySelector('.cursor');
 
-const addName = (e) => {
-    e.preventDefault(); // powstrzymanie przed domyślnym działaniem
-    const input = document.querySelector('input');
-    const newName = input.value;
-    if (input.value.length) { // to samo co input.value.length>0
-        for (name of names) { // pętla for...of; name odwołuje się do kolejnych elementów tablicy names
-            if(name === newName) {
-                alert("to imię już jest w tabeli")
-                return
-            }
-        } 
-        names.push(newName); // dodawanie do tablicy
-        div.textContent += newName + ', ';
-        input.value ='';
-    }
+const txt = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore tenetur rerum ad? Eum quos reprehenderit minima! Fugit, omnis! Eveniet repellendus et iure deserunt iusto quas in est odit, labore optio? KONIEC'
+
+let indexText = 0;
+const time = 40;
+const addLetter = () => {
+    spnText.textContent += txt[indexText]; // dodajemy litery do spana
+    indexText++
+    if (indexText == txt.length) clearInterval(indexTypying); // zatrzymanie setInterval
 }
-document.querySelector('button').addEventListener('click', addName)
+const indexTypying = setInterval(addLetter, time); // funckja i interał jako argumenty
+
+
+const cursorAnimation = () => {
+    spnCursor.classList.toggle('active');
+}
+
+setInterval(cursorAnimation, 400)
