@@ -1,0 +1,32 @@
+.burger {
+    position:absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    font-family: arial;
+    border-radius: 50%;
+    border: 2px solid black;
+    text-align: center;
+    line-height: 50px;
+    transition: .3s linear;
+}
+.burger:hover {
+    cursor: pointer;
+    transform:rotate(405deg);
+}
+aside {
+    position: absolute;
+    background-color: black;
+    top:0;
+    bottom:0;
+    left:-300px;
+    /* na pocżatku ukrywamy aside - więc przesuwamy go w lewo o całą jego szerokość */
+    width:300px;
+    transition: .2s linear;
+}
+
+.burger:hover+aside {
+    left:0;
+   }
