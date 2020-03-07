@@ -1,14 +1,20 @@
-const btn = document.querySelector('button');
-const names = ['Jagienka', 'Dobrosława', 'Daria', 'Asia', 'Kira', 'Marysia', 'Anastazja'];
-const prefixs = ["Wydaje mi się", "Mam wrażenie", "Szczerze powiedziawszy, myślę", "Szczerze uważam", "Na 100% twierdzę", "Jestem pewien"];
-
+const names = [];
 const div = document.querySelector('div');
 
-const nameGenerator = () => {
-    const indexName = Math.floor(Math.random() *names.length);
-    // const indexPrefix = Math.floor(Math.random() *prefixs.length);
-
-    div.innerHTML = `${prefixs[Math.floor(Math.random() *prefixs.length)]}, że najfajniejsze imię to ${names[indexName].bold()}`;
+const addName = (e) => {
+    e.preventDefault(); // powstrzymanie przed domyślnym działaniem
+    const input = document.querySelector('input');
+    const newName = input.value;
+    if (input.value.length) { // to samo co input.value.length>0
+        for (name of names) { // pętla for...of; name odwołuje się do kolejnych elementów tablicy names
+            if(name === newName) {
+                alert("to imię już jest w tabeli")
+                return
+            }
+        } 
+        names.push(newName); // dodawanie do tablicy
+        div.textContent += newName + ', ';
+        input.value ='';
+    }
 }
-
-btn.addEventListener('click',  nameGenerator)
+document.querySelector('button').addEventListener('click', addName)
