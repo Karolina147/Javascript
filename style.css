@@ -1,42 +1,76 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
 body {
-    min-height: 200vh;
+    font-family: ubuntu, arial;
+    overflow-x:hidden;
+}
+.gallery {
+    /* względem galerii będziemy pozycjonowac jej dzieci */
+    position:relative;
+    min-height: 100vh
+  
 }
 
-.wrapper {
-    margin: 10px 60px;
+.gallery .title {
+    position:absolute;
+    top: 95%;
+    left: 5%;
+    transform: rotate(-90deg);
+    transform-origin: 0 0 ; 
+    /* pozycjonowanie względem dolnego lewego rogu strony */
+ }
+.gallery h1 {
+    font-size: 60px;
+    background-color: #ccc;
+    color: darkslateblue;
+    padding: 10px 20px;
+    margin-bottom: 15px
 }
 
-.wrapper p {
-    font-size: 18px;
-    line-height: 200%;
+.gallery .images {
+    display:flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    /* justify-content: center; */
+    
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    bottom:5%;
+    left:35%;
+    /* height:90%;
+    width: 60%; */
+    /* background-color: darkturquoise; */
 }
+.gallery a {
+    position: relative;
+    overflow:hidden;
+    /* dzięki temu obrazek zawsze będzie wypełniał cały znacznik 'a' */
+    
 
-.burger {
-    position: fixed;
-    top:30px;
-    right: 30px;
-    font-size: 50px;    
-    z-index: 1;
-}
 
-i.off {
-    display: none
-}
-
-i.fa-angle-up {
-    color:white;
-}
-
-nav {
-    position: fixed;
-    left:0;
-    width:100%;
-    top:0;
-    height:30vh;
+    /* flex-shrink:0; */
+    flex-basis: calc(50% - 40px);
+    /* flex-grow: 1; szczególnie przydantny gdy nierówna liczba obrazków w linii*/
+    margin: 0 20px;
+    /* dlatego lepiej zrobić padding i flex-basis:350 */
+    height:20%;
     background-color: black;
-    transition: .3s;
+    box-shadow: 0 0 3px 3px cornflowerblue;
+    
 }
 
-nav.off {
-    top: -300px;
+
+img {
+    /* pozycjonowanie obrazka - względem .gallery a*/
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
 }
